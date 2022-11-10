@@ -19,13 +19,13 @@ public class ActorRepository {
 
     public Actor getActor(int actorId) throws SQLException {
         Statement statement = connection.createStatement();
-        String sql = "select * from actor where actor_id=" + actorId;
+        String sql = "select * from test_table where test_id=" + actorId;
         ResultSet rs = statement.executeQuery(sql);
         Actor actor = null;
         while(rs.next()){
 
-            String firstName = rs.getString("first_name");
-            String lastName = rs.getString("last_name");
+            String firstName = rs.getString("test_name");
+            String lastName = rs.getString("test_fname");
             System.out.println( actorId + " = " + firstName + " "+lastName);
             actor = new Actor(actorId, firstName, lastName);
         }
@@ -36,13 +36,13 @@ public class ActorRepository {
     public List<Actor> getAllActors() throws SQLException {
         List<Actor> allActors = new ArrayList<>();
         Statement statement = connection.createStatement();
-        String sql = "select * from actor";
+        String sql = "select * from test_table";
         ResultSet rs = statement.executeQuery(sql);
         Actor actor = null;
         while(rs.next()){
-            String actorId = rs.getString("actor_id");
-            String firstName = rs.getString("first_name");
-            String lastName = rs.getString("last_name");
+            String actorId = rs.getString("test_id");
+            String firstName = rs.getString("test_name");
+            String lastName = rs.getString("test_fname");
             System.out.println( actorId + " = " + firstName + " "+lastName);
             actor = new Actor(Integer.parseInt(actorId), firstName, lastName);
             allActors.add(actor);

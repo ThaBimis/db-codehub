@@ -34,7 +34,7 @@ public class DatabaseTester {
         List<Actor> allActors;
 
         try {
-            actor = findActor(3);
+            actor = findActor(1);
             allActors = findAllActors();
             System.out.println(actor);
             System.out.println(allActors);
