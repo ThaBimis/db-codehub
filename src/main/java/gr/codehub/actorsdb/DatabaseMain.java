@@ -132,8 +132,11 @@ public class DatabaseMain {
 
     private static void initiateDatabase() {
         try{
+
             readProperties();
             useMySqlDriver();
+
+
             connection = connectToDatabase(dbProperties.getProperty("connection.schema"));
 
 
@@ -170,10 +173,14 @@ public class DatabaseMain {
     }
 
     private static Connection connectToDatabase( String schema) throws SQLException {
+        Connection connection = DriverManager.getConnection
+                ("jdbc:mysql://localhost:3306/?user=root&password=P@ssw0rd");
+        Statement s=connection.createStatement();
+        int Result=s.executeUpdate("CREATE DATABASE IF NOT EXISTS university");
         String dbUrl = dbProperties.getProperty("connection.dbUrl");
         String userName = dbProperties.getProperty("connection.userName");
         String password = dbProperties.getProperty("connection.password");
-        connection = DriverManager.getConnection(dbUrl+"/"+schema,userName, password);
+       connection = DriverManager.getConnection(dbUrl+"/"+schema,userName, password);
         return connection;
     }
 
