@@ -1,6 +1,6 @@
 package gr.codehub.actorsdb.service;
 
-import gr.codehub.actorsdb.model.Actor;
+import gr.codehub.actorsdb.model.Department;
 import gr.codehub.actorsdb.repository.CsvRepository;
 
 import java.io.FileNotFoundException;
@@ -13,11 +13,12 @@ public class FileService {
         this.filename = filename;
     }
 
-    public void saveActor(Actor actor) throws FileNotFoundException {
-        CsvRepository.writeToFile(filename, actor);
+    public void saveActor(Department department) throws FileNotFoundException {
+        CsvRepository.writeToFile(filename, department);
     }
 
-    public void saveAllActors(List<Actor> allActors) throws FileNotFoundException {
-        CsvRepository.writeToFileAllDb(filename, allActors);
+    public void saveAllActors(List<Department> allDepartments) throws FileNotFoundException {
+        CsvRepository.writeToFileAllDb(filename, allDepartments);
     }
+
 }
