@@ -1,6 +1,5 @@
 package gr.codehub.universitydb.model;
 
-import gr.codehub.universitydb.repository.StudentRepository;
 
 public class Student {
 

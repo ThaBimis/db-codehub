@@ -35,12 +35,7 @@ public class DepartmentRepository {
         return department;
     }
 
-    private static void readProperties() throws IOException {
-        InputStream inStream = DatabaseMain.class.getClassLoader().getResourceAsStream("mysql.properties");
-        dbProperties = new Properties();
-        dbProperties.load(inStream);
 
-    }
 
     public List<Department> getAllDepartments() throws SQLException {
         List<Department> allDepartments = new ArrayList<>();
@@ -84,6 +79,6 @@ public class DepartmentRepository {
     public void deleteDepartment(int departmentId) throws SQLException {
         Statement statement = connection.createStatement();
         String sql = "delete from department where id="+departmentId;
-        int rs = statement.executeUpdate(sql);
+        statement.executeUpdate(sql);
     }
 }
