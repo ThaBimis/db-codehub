@@ -46,6 +46,7 @@ public class DatabaseMain {
         try {
 
             sqlCommand = dbProperties.getProperty("insert.into.001");
+
             departmentComp = createDepartment(1, "Computer Science", "10", sqlCommand);
             departmentManag = createDepartment(2, "Management", "15", sqlCommand);
             departmentHisto = createDepartment(3, "History", "12", sqlCommand);
@@ -55,21 +56,24 @@ public class DatabaseMain {
             System.out.println(departmentHisto);
 
             sqlCommand = dbProperties.getProperty("update.into.001");
-            updateDepartment(2, "Business Management",sqlCommand);
 
+            updateDepartment(2, "Business Management",sqlCommand);
             deleteDepartment(3);
 
             sqlCommand = dbProperties.getProperty("insert.into.002");
 
-            student1 = createStudent(1, "George", 1, sqlCommand);
-            student2 = createStudent(2, "Ann", 1,  sqlCommand);
-            student3 = createStudent(3, "Marry", 2, sqlCommand);
+            createStudent(1, "George", 1, sqlCommand);
+            createStudent(2, "Ann", 1,  sqlCommand);
+            createStudent(3, "Marry", 2, sqlCommand);
 
             updateStudent(2, "Anna",dbProperties.getProperty("update.into.002"));
+
             Student student = findStudent(1);
             System.out.println(student);
+
             allDepartments = findAllDepartments();
             allStudents = findAllStudents();
+
             saveAllActorsToFile(allDepartments);
             saveAllActorsToFile2(allStudents);
 
