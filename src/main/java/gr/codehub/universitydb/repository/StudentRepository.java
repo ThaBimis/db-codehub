@@ -1,23 +1,19 @@
 package gr.codehub.universitydb.repository;
 
-import gr.codehub.universitydb.DatabaseMain;
 import gr.codehub.universitydb.model.Student;
 
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class StudentRepository {
 
     private final Connection connection; //prosthesa final
 
-    private static  final Properties dbProperties = null;
     private final String studentDepartment;
 
-    public StudentRepository(Connection connection, String studentDepartment) throws SQLException {
+    public StudentRepository(Connection connection, String studentDepartment) {
         this.connection = connection;
         this.studentDepartment = studentDepartment;
 
@@ -74,7 +70,7 @@ public class StudentRepository {
     public void deleteStudents(int studentId) throws SQLException {
         Statement statement = connection.createStatement();
         String sql = "delete from student where id="+studentId;
-        int rs = statement.executeUpdate(sql);
+        statement.executeUpdate(sql);
 
     }
 

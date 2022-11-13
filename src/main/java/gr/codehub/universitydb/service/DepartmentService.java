@@ -3,21 +3,20 @@ package gr.codehub.universitydb.service;
 import gr.codehub.universitydb.model.Department;
 import gr.codehub.universitydb.repository.DepartmentRepository;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 public class DepartmentService {
 
-    private DepartmentRepository repository = null;
+    private final DepartmentRepository repository;
 
     public DepartmentService(Connection connection)  {
         repository = new DepartmentRepository(connection);
     }
 
     public Department findDepartmentWithId(int departmentId) throws SQLException {
-        return repository.getDepartment(2);
+        return repository.getDepartment(departmentId);
     }
 
     public List<Department> findAllDepartments() throws SQLException {

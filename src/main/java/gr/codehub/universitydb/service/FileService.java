@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public class FileService {
-    private String filename;
+    private final String filename;
 
     public FileService(String filename){
         this.filename = filename;
