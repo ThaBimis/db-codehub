@@ -71,7 +71,7 @@ public class DatabaseMain {
             allDepartments = findAllDepartments();
             allStudents = findAllStudents();
             saveAllActorsToFile(allDepartments);
-            //saveAllActorsToFile(allStudents);
+            saveAllActorsToFile2(allStudents);
 
         } catch (SQLException e) {
             System.out.println("Problem with business sql: " + e.getMessage());
@@ -151,6 +151,11 @@ public class DatabaseMain {
     private static void saveAllActorsToFile(List<Department> allDepartments) throws FileNotFoundException {
         FileService fs = new FileService("data\\all_departments.csv");
         fs.saveAllActors(allDepartments);
+    }
+
+    private static void saveAllActorsToFile2(List<Student> allDepartments) throws FileNotFoundException {
+        FileService fs = new FileService("data\\all_students.csv");
+        fs.saveAllActors2(allDepartments);
     }
 
 

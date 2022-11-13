@@ -1,6 +1,7 @@
 package gr.codehub.universitydb.service;
 
 import gr.codehub.universitydb.model.Department;
+import gr.codehub.universitydb.model.Student;
 import gr.codehub.universitydb.repository.CsvRepository;
 
 import java.io.FileNotFoundException;
@@ -19,6 +20,10 @@ public class FileService {
 
     public void saveAllActors(List<Department> allDepartments) throws FileNotFoundException {
         CsvRepository.writeToFileAllDb(filename, allDepartments);
+    }
+
+    public void saveAllActors2(List<Student> allDepartments) throws FileNotFoundException {
+        CsvRepository.writeToFileAllDb2(filename, allDepartments);
     }
 
 }

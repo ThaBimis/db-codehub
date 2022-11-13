@@ -19,7 +19,7 @@ public class CsvRepository {
     public static void writeToFileAllDb(String filename, List<Department> allDepartments) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(filename);
         for (Department allDepartment : allDepartments) {
-            String line = allDepartment.getActorId() + "," + allDepartment.getFirstName() + "," + allDepartment.getLastName();
+            String line = "DepartmentId: "+allDepartment.getActorId() + ", " +"DepartmentName: " +allDepartment.getFirstName() + ", " +"Number of tracks: "+ allDepartment.getLastName();
             pw.println(line);
         }
 
@@ -30,7 +30,7 @@ public class CsvRepository {
     public static void writeToFileAllDb2(String filename, List<Student> allDepartments) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(filename);
         for (Student allDepartment : allDepartments) {
-            String line = allDepartment.getStudentId() + "," + allDepartment.getStudentName() + "," + allDepartment.getStudentDepartment();
+            String line = "StudentId: "+allDepartment.getStudentId() + ", " + "Student Name: "+ allDepartment.getStudentName() + ", " + "StudentDepId: "+ allDepartment.getStudentDepartment() + ", " + "Student Dep Name: "+allDepartment.getStudentDepartmentName();
             pw.println(line);
         }
 
