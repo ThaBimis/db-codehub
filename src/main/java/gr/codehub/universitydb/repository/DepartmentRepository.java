@@ -52,7 +52,6 @@ public class DepartmentRepository {
             String departmentId = rs.getString("id");
             String departmentName = rs.getString("name");
             String numberOfTrucks = rs.getString("numberoftrucks");
-            System.out.println( departmentId+ " = " + departmentName + " "+numberOfTrucks);
             department = new Department(Integer.parseInt(departmentId), departmentName, numberOfTrucks);
             allDepartments.add(department);
         }

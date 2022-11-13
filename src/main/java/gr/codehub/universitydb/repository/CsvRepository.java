@@ -22,9 +22,8 @@ public class CsvRepository {
             String line = "DepartmentId: "+allDepartment.getActorId() + ", " +"DepartmentName: " +allDepartment.getFirstName() + ", " +"Number of tracks: "+ allDepartment.getLastName();
             pw.println(line);
         }
-
-
         pw.close();
+        System.out.println("Writing to file: "+ filename+ " was successfull!");
     }
 
     public static void writeToFileAllDb2(String filename, List<Student> allDepartments) throws FileNotFoundException {
@@ -33,9 +32,8 @@ public class CsvRepository {
             String line = "StudentId: "+allDepartment.getStudentId() + ", " + "Student Name: "+ allDepartment.getStudentName() + ", " + "StudentDepId: "+ allDepartment.getStudentDepartment() + ", " + "Student Dep Name: "+allDepartment.getStudentDepartmentName();
             pw.println(line);
         }
-
-
         pw.close();
+        System.out.println("Writing to file: "+ filename+ " was successfull!");
     }
 
 }

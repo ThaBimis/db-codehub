@@ -32,7 +32,6 @@ public class StudentRepository {
         while(rs.next()){
 
             String studentName = rs.getString("name");
-            System.out.println( studentId + " = " + studentName + ":"+studentDepartment);
             student = new Student(studentId, studentName, Integer.parseInt(studentDepartment));
             String departmentName = studentDepartment(connection, studentDepartment);
             student.setStudentDepartmentName(departmentName);
