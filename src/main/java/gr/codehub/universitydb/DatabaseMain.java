@@ -1,10 +1,10 @@
-package gr.codehub.actorsdb;
+package gr.codehub.universitydb;
 
-import gr.codehub.actorsdb.model.Department;
-import gr.codehub.actorsdb.model.Student;
-import gr.codehub.actorsdb.service.DepartmentService;
-import gr.codehub.actorsdb.service.FileService;
-import gr.codehub.actorsdb.service.StudentService;
+import gr.codehub.universitydb.model.Department;
+import gr.codehub.universitydb.model.Student;
+import gr.codehub.universitydb.service.DepartmentService;
+import gr.codehub.universitydb.service.FileService;
+import gr.codehub.universitydb.service.StudentService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,9 +33,6 @@ public class DatabaseMain {
         statement.executeUpdate(sql);
         sql = dbProperties.getProperty("create.table.002");
         statement.executeUpdate(sql);
-//        sql = dbProperties.getProperty("create.table.004");
-//        statement.executeUpdate(sql);
-
     }
 
     private static void runBusiness() {
@@ -45,20 +42,28 @@ public class DatabaseMain {
         List<Department> allDepartments;
         List<Student> allStudents;
 
+        String sqlCommand;
         try {
-            departmentComp = createDepartment(1, "Computer Science", "10", dbProperties.getProperty("insert.into.001"));
-            departmentManag = createDepartment(2, "Management", "15", dbProperties.getProperty("insert.into.001"));
-            departmentHisto = createDepartment(3, "History", "12", dbProperties.getProperty("insert.into.001"));
+
+            sqlCommand = dbProperties.getProperty("insert.into.001");
+            departmentComp = createDepartment(1, "Computer Science", "10", sqlCommand);
+            departmentManag = createDepartment(2, "Management", "15", sqlCommand);
+            departmentHisto = createDepartment(3, "History", "12", sqlCommand);
 
             System.out.println(departmentComp);
             System.out.println(departmentManag);
             System.out.println(departmentHisto);
-            updateDepartment(2, "Business Management", dbProperties.getProperty("update.into.001"));
+
+            sqlCommand = dbProperties.getProperty("update.into.001");
+            updateDepartment(2, "Business Management",sqlCommand);
+
             deleteDepartment(3);
 
-            student1 = createStudent(1, "George", 1,dbProperties.getProperty("insert.into.002"));
-            student2 = createStudent(2, "Ann", 1,dbProperties.getProperty("insert.into.002"));
-            student3 = createStudent(3, "Marry", 2,dbProperties.getProperty("insert.into.002"));//ann mary
+            sqlCommand = dbProperties.getProperty("insert.into.002");
+
+            student1 = createStudent(1, "George", 1, sqlCommand);
+            student2 = createStudent(2, "Ann", 1,  sqlCommand);
+            student3 = createStudent(3, "Marry", 2, sqlCommand);
 
             updateStudent(2, "Anna",dbProperties.getProperty("update.into.002"));
             Student student = findStudent(1);
@@ -68,19 +73,9 @@ public class DatabaseMain {
             saveAllActorsToFile(allDepartments);
             //saveAllActorsToFile(allStudents);
 
-
-//            department = findDepartment(1);
-//            allDepartments = findAllDepartments();
-
-//            System.out.println(department);
-//            System.out.println(allDepartments);
-//            saveActorToFile(department);
-//            saveAllActorsToFile(allDepartments);
         } catch (SQLException e) {
             System.out.println("Problem with business sql: " + e.getMessage());
-        } /*catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }*/ catch (FileNotFoundException e) {
+        }  catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -135,8 +130,6 @@ public class DatabaseMain {
 
             readProperties();
             useMySqlDriver();
-
-
             connection = connectToDatabase(dbProperties.getProperty("connection.schema"));
 
 
@@ -177,6 +170,7 @@ public class DatabaseMain {
                 ("jdbc:mysql://localhost:3306/?user=root&password=P@ssw0rd");
         Statement s=connection.createStatement();
         int Result=s.executeUpdate("CREATE DATABASE IF NOT EXISTS university");
+
         String dbUrl = dbProperties.getProperty("connection.dbUrl");
         String userName = dbProperties.getProperty("connection.userName");
         String password = dbProperties.getProperty("connection.password");

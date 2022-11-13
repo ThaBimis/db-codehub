@@ -1,7 +1,10 @@
-package gr.codehub.actorsdb.repository;
+package gr.codehub.universitydb.repository;
 
-import gr.codehub.actorsdb.model.Department;
+import gr.codehub.universitydb.DatabaseMain;
+import gr.codehub.universitydb.model.Department;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +14,9 @@ public class DepartmentRepository {
     private static Properties dbProperties = null;
     private final Connection connection; //prosthesa final
 
-    public DepartmentRepository(Connection connection){
+    public DepartmentRepository(Connection connection)  {
         this.connection = connection;
+
     }
 
     public Department getDepartment(int actorId) throws SQLException {
@@ -29,6 +33,13 @@ public class DepartmentRepository {
         }
         rs.close();
         return department;
+    }
+
+    private static void readProperties() throws IOException {
+        InputStream inStream = DatabaseMain.class.getClassLoader().getResourceAsStream("mysql.properties");
+        dbProperties = new Properties();
+        dbProperties.load(inStream);
+
     }
 
     public List<Department> getAllDepartments() throws SQLException {
@@ -72,11 +83,8 @@ public class DepartmentRepository {
         statement.setInt(2,departmentId);
 
         System.out.println(statement);
-
-
         int rs = statement.executeUpdate();
         System.out.println(rs);
-        //String sql = "update Department SET name = "+departmentName+" WHERE id ="+departmentId;
     }
 
     public void deleteDepartment(int departmentId) throws SQLException {

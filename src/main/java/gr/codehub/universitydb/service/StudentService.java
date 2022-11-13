@@ -1,8 +1,9 @@
-package gr.codehub.actorsdb.service;
+package gr.codehub.universitydb.service;
 
-import gr.codehub.actorsdb.model.Student;
-import gr.codehub.actorsdb.repository.StudentRepository;
+import gr.codehub.universitydb.model.Student;
+import gr.codehub.universitydb.repository.StudentRepository;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -11,7 +12,7 @@ public class StudentService {
     private StudentRepository repository = null;
 
 
-    public StudentService(Connection connection, String studentDepartment){
+    public StudentService(Connection connection, String studentDepartment) {
         repository = new StudentRepository(connection, studentDepartment);
     }
 

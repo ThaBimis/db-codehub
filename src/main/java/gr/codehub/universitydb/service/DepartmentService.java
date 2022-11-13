@@ -1,8 +1,9 @@
-package gr.codehub.actorsdb.service;
+package gr.codehub.universitydb.service;
 
-import gr.codehub.actorsdb.model.Department;
-import gr.codehub.actorsdb.repository.DepartmentRepository;
+import gr.codehub.universitydb.model.Department;
+import gr.codehub.universitydb.repository.DepartmentRepository;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -11,7 +12,7 @@ public class DepartmentService {
 
     private DepartmentRepository repository = null;
 
-    public DepartmentService(Connection connection){
+    public DepartmentService(Connection connection)  {
         repository = new DepartmentRepository(connection);
     }
 

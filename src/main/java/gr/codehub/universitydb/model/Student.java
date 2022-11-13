@@ -1,4 +1,4 @@
-package gr.codehub.actorsdb.model;
+package gr.codehub.universitydb.model;
 
 public class Student {
 

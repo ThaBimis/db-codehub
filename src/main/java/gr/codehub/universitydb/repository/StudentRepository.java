@@ -1,20 +1,26 @@
-package gr.codehub.actorsdb.repository;
+package gr.codehub.universitydb.repository;
 
-import gr.codehub.actorsdb.model.Department;
-import gr.codehub.actorsdb.model.Student;
+import gr.codehub.universitydb.DatabaseMain;
+import gr.codehub.universitydb.model.Student;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class StudentRepository {
 
     private final Connection connection; //prosthesa final
+
+    private static  final Properties dbProperties = null;
     private final String studentDepartment;
 
-    public StudentRepository(Connection connection, String studentDepartment){
+    public StudentRepository(Connection connection, String studentDepartment) {
         this.connection = connection;
         this.studentDepartment = studentDepartment;
+
     }
 
     public Student getStudent(int studentId) throws SQLException {
@@ -25,7 +31,6 @@ public class StudentRepository {
         while(rs.next()){
 
             String studentName = rs.getString("name");
-            //String courseName = rs.getString("test_fname");
             System.out.println( studentId + " = " + studentName + ":"+studentDepartment);
             actor = new Student(studentId, studentName, Integer.parseInt(studentDepartment));
         }
@@ -42,7 +47,7 @@ public class StudentRepository {
         while(rs.next()){
             String studentId = rs.getString("id");
             String studentName = rs.getString("name");
-            String studentDepartment = rs.getString("department");
+            String studentDepartment = rs.getString("depid");
             System.out.println( studentId + " = " + studentName + " "+studentDepartment);
             student = new Student(Integer.parseInt(studentId), studentName, Integer.parseInt(studentDepartment));
             allStudents.add(student);
@@ -72,8 +77,11 @@ public class StudentRepository {
 
     }
 
-    public Student createStudent(int studentId, String name, int departmentId, String sql) throws SQLException {
 
+
+
+
+    public Student createStudent(int studentId, String name, int departmentId, String sql) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, studentId);
         statement.setString(2,name);

@@ -1,4 +1,4 @@
-package gr.codehub.actorsdb.model;
+package gr.codehub.universitydb.model;
 
 
 public class Department {
@@ -43,8 +43,8 @@ public class Department {
     public String toString() {
         return "Department{" +
                 "departmentId=" + departmentId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", DepartmentName='" + firstName + '\'' +
+                ", Number of tracks='" + lastName + '\'' +
                 '}';
     }
 }
