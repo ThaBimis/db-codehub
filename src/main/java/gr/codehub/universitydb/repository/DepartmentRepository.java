@@ -66,11 +66,8 @@ public class DepartmentRepository {
         statement.setInt(1, departmentId);
         statement.setString(2, name);
         statement.setString(3, noOfTrucks);
-        System.out.println(statement);
 
-
-        int rs = statement.executeUpdate();
-        System.out.println(rs);
+        statement.executeUpdate();
         return new Department(departmentId, name, noOfTrucks);
 
 
@@ -81,10 +78,8 @@ public class DepartmentRepository {
 
         statement.setString(1, departmentName);
         statement.setInt(2,departmentId);
+        statement.executeUpdate();
 
-        System.out.println(statement);
-        int rs = statement.executeUpdate();
-        System.out.println(rs);
     }
 
     public void deleteDepartment(int departmentId) throws SQLException {

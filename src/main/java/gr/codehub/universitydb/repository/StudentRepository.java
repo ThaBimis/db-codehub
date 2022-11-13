@@ -68,11 +68,7 @@ public class StudentRepository {
 
         statement.setString(1, studentName);
         statement.setInt(2,studentId);
-
-        System.out.println(statement);
-
-
-        int rs = statement.executeUpdate();
+        statement.executeUpdate();
 
     }
 
@@ -104,8 +100,8 @@ public class StudentRepository {
         statement.setInt(1, studentId);
         statement.setString(2,name);
         statement.setInt(3, departmentId);
-        System.out.println(statement);
-        int rs = statement.executeUpdate();
+        statement.executeUpdate();
+
         String departmentName = studentDepartment(connection,Integer.toString(departmentId));
         Student student =  new Student(studentId, name, departmentId);
         student.setStudentDepartmentName(departmentName);
