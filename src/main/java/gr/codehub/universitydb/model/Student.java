@@ -1,16 +1,19 @@
 package gr.codehub.universitydb.model;
 
+import gr.codehub.universitydb.repository.StudentRepository;
+
 public class Student {
 
     private int studentId;
 
     private String studentName;
-    private int studentDepartment;
+    private int studentDepartmentId;
+    private String studentDepartment;
 
-    public Student(int studentId, String studentName, int studentDepartment) {
+    public Student(int studentId, String studentName, int studentDepartmentId) {
         this.studentId = studentId;
         this.studentName = studentName;
-        this.studentDepartment = studentDepartment;
+        this.studentDepartmentId = studentDepartmentId;
     }
 
     public int getStudentId() {
@@ -19,11 +22,11 @@ public class Student {
 
 
     public int getStudentDepartment() {
-        return studentDepartment;
+        return studentDepartmentId;
     }
 
     public void setStudentId(int studentId) {
-        this.studentId = studentDepartment;
+        this.studentId = studentId;
     }
 
     public String getStudentName() {
@@ -35,7 +38,15 @@ public class Student {
     }
 
     public void setStudentDepartment(int studentDepartment) {
+        this.studentDepartmentId = studentDepartment;
+    }
+
+    public void setStudentDepartmentName(String studentDepartment) {
         this.studentDepartment = studentDepartment;
+    }
+
+    public String getStudentDepartmentName() {
+      return studentDepartment;
     }
 
     @Override
@@ -43,7 +54,8 @@ public class Student {
         return "Student{" +
                 "studentId=" + studentId +
                 ", studentName='" + studentName + '\'' +
-                ", studentDepartment=" + studentDepartment +
+                ", studentDepartmentId=" + studentDepartmentId +
+                ", studentDepartmentName=" + studentDepartment +
                 '}';
     }
 }

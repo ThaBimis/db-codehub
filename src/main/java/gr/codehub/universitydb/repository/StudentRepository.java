@@ -17,9 +17,10 @@ public class StudentRepository {
     private static  final Properties dbProperties = null;
     private final String studentDepartment;
 
-    public StudentRepository(Connection connection, String studentDepartment) {
+    public StudentRepository(Connection connection, String studentDepartment) throws SQLException {
         this.connection = connection;
         this.studentDepartment = studentDepartment;
+
 
     }
 
@@ -27,15 +28,17 @@ public class StudentRepository {
         Statement statement = connection.createStatement();
         String sql = "select * from student where id=" + studentId;
         ResultSet rs = statement.executeQuery(sql);
-        Student actor = null;
+        Student student = null;
         while(rs.next()){
 
             String studentName = rs.getString("name");
             System.out.println( studentId + " = " + studentName + ":"+studentDepartment);
-            actor = new Student(studentId, studentName, Integer.parseInt(studentDepartment));
+            student = new Student(studentId, studentName, Integer.parseInt(studentDepartment));
+            String departmentName = studentDepartment(connection, studentDepartment);
+            student.setStudentDepartmentName(departmentName);
         }
         rs.close();
-        return actor;
+        return student;
     }
 
     public List<Student> getAllStudents() throws SQLException {
@@ -48,8 +51,11 @@ public class StudentRepository {
             String studentId = rs.getString("id");
             String studentName = rs.getString("name");
             String studentDepartment = rs.getString("depid");
-            System.out.println( studentId + " = " + studentName + " "+studentDepartment);
+            //System.out.println( studentId + " = " + studentName + " "+studentDepartment);
             student = new Student(Integer.parseInt(studentId), studentName, Integer.parseInt(studentDepartment));
+            String departmentName = studentDepartment(connection, studentDepartment);
+            student.setStudentDepartmentName(departmentName);
+            System.out.println(student);
             allStudents.add(student);
         }
         rs.close();
@@ -77,6 +83,18 @@ public class StudentRepository {
 
     }
 
+    public static String studentDepartment(Connection connection, String studentDepartment) throws SQLException {
+        String departmentName = null;
+        Statement statement = connection.createStatement();
+        String sql = "select name from department where id="+studentDepartment;
+        ResultSet rs = statement.executeQuery(sql);
+        while (rs.next()){
+            departmentName = rs.getString("name");
+
+        }
+        return departmentName;
+    }
+
 
 
 
@@ -88,6 +106,9 @@ public class StudentRepository {
         statement.setInt(3, departmentId);
         System.out.println(statement);
         int rs = statement.executeUpdate();
-        return new Student(studentId, name, departmentId);
+        String departmentName = studentDepartment(connection,Integer.toString(departmentId));
+        Student student =  new Student(studentId, name, departmentId);
+        student.setStudentDepartmentName(departmentName);
+        return student;
     }
 }

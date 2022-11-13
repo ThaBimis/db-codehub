@@ -3,7 +3,6 @@ package gr.codehub.universitydb.service;
 import gr.codehub.universitydb.model.Student;
 import gr.codehub.universitydb.repository.StudentRepository;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,12 +11,12 @@ public class StudentService {
     private StudentRepository repository = null;
 
 
-    public StudentService(Connection connection, String studentDepartment) {
+    public StudentService(Connection connection, String studentDepartment) throws SQLException {
         repository = new StudentRepository(connection, studentDepartment);
     }
 
     public Student findStudentWithId(int studentId) throws SQLException {
-        return repository.getStudent(2);
+        return repository.getStudent(studentId);
     }
 
     public List<Student> findAllStudents() throws SQLException {
