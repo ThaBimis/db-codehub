@@ -38,7 +38,6 @@ public class DatabaseMain {
     private static void runBusiness() {
 
         Department departmentComp,departmentManag, departmentHisto;
-        Student student1, student2, student3;
         List<Department> allDepartments;
         List<Student> allStudents;
 
@@ -90,7 +89,7 @@ public class DatabaseMain {
     }
 
     private static Student findStudent(int studentId) throws SQLException {
-        StudentService ar = new StudentService(connection, "1");
+        StudentService ar = new StudentService(connection, Integer.toString(studentId));
         return ar.findStudentWithId(studentId); //trexw business
     }
 
