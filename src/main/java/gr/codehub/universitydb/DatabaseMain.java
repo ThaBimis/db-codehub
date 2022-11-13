@@ -68,7 +68,7 @@ public class DatabaseMain {
 
             updateStudent(2, "Anna",dbProperties.getProperty("update.into.002"));
 
-            Student student = findStudent(1);
+            Student student = findStudent(2);
             System.out.println(student);
 
             allDepartments = findAllDepartments();
